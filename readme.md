@@ -1,0 +1,1 @@
+The third project for the HackerYou bootcamp - An app written by hand without using an API. This app will outline various remedies for aches, pains, or symptoms. NON-MEDICAL. 
