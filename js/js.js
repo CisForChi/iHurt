@@ -1,19 +1,21 @@
 // $(function() {
 $('.bodyPart').on("click", function() {
-	  var partId = ($(this).attr('id'));
-		getBodyButtons(partId);
+	var partId = ($(this).data('id'));
+	getBodyButtons(partId);
 });
 
 
-function getBodyButtons(partId){ //function gets buttons for the body part that was clicked
+function getBodyButtons(partId) { //function gets buttons for the body part that was clicked
 
-	 var currentPart = partId;
+	var currentPart = partId;
 	var bodyOptions = Object.keys(dummyBody[currentPart]);
+	$('.info').html('<ul class="buttonList"></ul>')
 	for (var i = 0; i < bodyOptions.length; i++) {
-	$('.info').append('<button>' + bodyOptions[i] + '</button>');
+		$('.buttonList').append('<li><button>' + bodyOptions[i] + '</button></li>');
 	}
-	};
+};
 
+var dummyBody = {};
 
 function sortIntoCategories() {
 	for (pose in poseIndex) {
@@ -22,10 +24,37 @@ function sortIntoCategories() {
 			categories[benefitArray[i]].push(poseIndex[pose]);
 		}
 	}
+	dummyBody = {
+		head: {
+			stress: categories.stress,
+			depression: categories.depression,
+			anger: categories.anger,
+			anxiety: categories.anxiety,
+			attention: categories.attention,
+			exhaustion: categories.exhaustion,
+			insomnia: categories.insomnia,
+			headache: categories.headache,
+			concentration: categories.concentration,
+			eyes: categories.eyes,
+		},
+		upperArms: {
+			tension: categories.tension,
+		},
+		lowerArms: {
+
+		},
+		chest: {
+			backPain: categories.backPain,
+		},
+		lowerAbdomen: {
+			digestion: categories.digestion,
+			menstruation: categories.menstruation,
+		},
+		legsAndFeet: {
+			feet: categories.feet,
+		}
+	}
 }
-
-sortIntoCategories();
-
 var categories = {
 	depression: [],
 	fear: [],
@@ -116,37 +145,7 @@ var poseIndex = {
 		},
 	}
 	//Put everything on tree based on whats in the benefits array.
-var dummyBody = {
-	head: {
-		stress: categories.stress,
-		depression: categories.depression,
-		anger: categories.anger,
-		anxiety: categories.anxiety,
-		attention: categories.attention,
-		exhaustion: categories.exhaustion,
-		insomnia: categories.insomnia,
-		headache: categories.headache,
-		concentration: categories.concentration,
-		eyes: categories.eyes,
-	},
-	upperArms: {
-		tension: categories.tension,
-	},
-	lowerArms: {
 
-	},
-	chest: {
-		backPain: categories.backPain,
-	},
-	lowerAbdomen: {
-		digestion: categories.digestion,
-		menstruation: categories.menstruation,
-	},
-	legsAndFeet: {
-		feet: categories.feet,
-	}
-}
-
-
+sortIntoCategories();
 
 // })

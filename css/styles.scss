@@ -86,7 +86,11 @@ button {
 
 		 button {
 			 display:block;
-			 margin:0 auto;
+			 margin-bottom: 2px;
 			 padding:25px;
 			 background: transparent;
+
+		 }
+		 button:hover {
+			 color:red;
 		 }
