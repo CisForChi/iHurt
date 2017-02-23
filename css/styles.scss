@@ -50,6 +50,10 @@ header svg {
 		.diagram {
 
 			width: 100%;
+			transition: width 2s;
+			&.diagram--Active {
+				width: 50%;
+			}
 
 			svg {
 				position: relative;
@@ -62,14 +66,20 @@ header svg {
 		}
 		.diagram svg g {
 			width: 100%;
-
-
 		}
+
+
 
 		.body {
 			fill: #d3d3d3;
 			stroke: black;
 			stroke-width: 20;
+		}
+		.bodyPart--Active {
+			fill: rgba(213, 0, 18, .3);
+			&:hover {
+				fill: darken(rgba(213, 0, 18, .3), 20);
+			}
 		}
 		.arm:hover {
 			fill: white;
@@ -113,14 +123,19 @@ header svg {
 		.info {
 			position:absolute;
 			font-family: 'Open Sans', sans-serif;
-			left:100%;
-			top:0;
-			border:1px solid black;
-			transition: left 1s;
+			left:70%;
+			transform: translatex(-50%);
+			top:5%;
+			transition: left 2s;
+			&.info--Active {
+				left: 50%;
+			}
  ul {
 
 		background-color: transparent;
-		border:1px solid transparent;
+		// border:1px solid transparent;
+		padding:0;
+		margin:0 auto;
  }
 
 		li {
@@ -129,8 +144,26 @@ header svg {
 			border:1px solid transparent;
 
 		}
+	}
+		button{
+			background-color:transparent;
+			border:1px solid black;
+			padding: 5px 10px;
+			margin:10px;
+			width:100%;
+
+}
+button:hover{
+background:	#c2e1e5;
+
+}
+			button:focus{
+				outline-color: #c2e1e5;
+
+
 		}
-		.info.active{
+
+		.info.infoActive{
 
 			left:75%;
 		}

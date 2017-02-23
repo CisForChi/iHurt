@@ -1,21 +1,32 @@
 // $(function() {
-$('.bodyPart').on("click", function(){
+$('.info').hide();
+$('.bodyPart').on("click", function() {
+	var fadeSpeed = 1000;
+	var partId = ($(this).data('id'));
+	if ($(this).hasClass('bodyPart--Active')) {
+		$('.bodyPart').removeClass('bodyPart--Active');
+		$('.diagram').removeClass('diagram--Active');
+		$('.info').fadeOut(fadeSpeed);
+		$('.info').removeClass('info--Active');
 
+	} else {
+		$('.bodyPart').removeClass('bodyPart--Active'); // removes color of all bodypart
+		$(this).addClass('bodyPart--Active'); // adds color to bodypart we've clicked
+		$('.diagram').addClass('diagram--Active'); // shrinks person and moved left
+		$('.info').removeClass('info--Active'); // moves the button left 70%
+		$('.info').fadeOut(fadeSpeed, function() {
+			setTimeout(function(){ $('.info').addClass('info--Active'); }, 1); 
+			$('.info').fadeIn(fadeSpeed);
 
-$('.info').toggleClass("active");
-$(this).css("fill", "rgba(213, 0, 18, .3)");
-
-
-
-
-
+			getBodyButtons(partId);
+		});
+	}
 });
 
 
 
 $('.bodyPart').on("click", function() {
-	var partId = ($(this).data('id'));
-	getBodyButtons(partId);
+
 });
 
 
@@ -31,19 +42,16 @@ function getBodyButtons(partId) { //function gets buttons for the body part that
 };
 
 
-$('.info').on('click', '.benefitButton', function(){
-var currentPart = $(this).data('id');
-var benefit = $(this).text();
-var poses = dummyBody[currentPart][benefit];
+$('.info').on('click', '.benefitButton', function() {
+	var currentPart = $(this).data('id');
+	var benefit = $(this).text();
+	var poses = dummyBody[currentPart][benefit];
 
 	$('.yogaInfo').html('<ul class="posesList"></ul>')
-for (var i = 0; i < poses.length; i++) {
+	for (var i = 0; i < poses.length; i++) {
 
-	$('.posesList').append('<li><button class="poseButton" >' + poses[i].title + '</button></li>');
-}
-
-
-
+		$('.posesList').append('<li><button class="poseButton" >' + poses[i].title + '</button></li>');
+	}
 
 
 
