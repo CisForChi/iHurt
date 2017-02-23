@@ -6,46 +6,54 @@
 	<title> Project 3 </title>
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link rel="stylesheet" href="css/styles.css">
+	<link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+
 </head>
 <body>
 
-	<!-- <header>  Shaped color header, goes up when you click -->
-<!-- 		<h1>Lorem ipsum dolor.</h1>
+ <header>
+ 		<h1>iHurt.</h1>
 		<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" preserveAspectRatio="none">
 			<circle fill="white" cx="0" cy="100" r="100" />
 			<circle fill="white" cx="200" cy="100" r="100" />
 		</svg>
 	</header>
- -->
+
+
+ <div class="appArea">
 	<section class="diagram clearfix"> <!-- SVG of person goes in here. -->
 		<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="1in" height="1in" version="1.1" viewBox="0 0 2500 2500" preserveAspectRatio="xMidYMid meet" xmlns:xlink="http://www.w3.org/1999/xlink">
 			<g class="body">
-				<path class="bodyPart head" id="head" d="M1224 2286 c-24 -20 -28 -32 -32 -89 -3 -46 1 -79 13 -111 10 -25 15 -55 12 -66 -5 -19 -1 -20 63 -20 64 0 68 1 63 20 -3 11 2 41 12 66 12 32 16 65 13 111 -4 57 -8 69 -32 89 -15 13 -40 24 -56 24 -16 0 -41 -11 -56 -24z"/>
+				<path class="bodyPart head" data-id="head" d="M1224 2286 c-24 -20 -28 -32 -32 -89 -3 -46 1 -79 13 -111 10 -25 15 -55 12 -66 -5 -19 -1 -20 63 -20 64 0 68 1 63 20 -3 11 2 41 12 66 12 32 16 65 13 111 -4 57 -8 69 -32 89 -15 13 -40 24 -56 24 -16 0 -41 -11 -56 -24z"/>
 				<g class="torso">
-					<path class="bodyPart chest" id="chest" d="M1163 1963 l-33 -17 0 -238 0 -238 150 0 150 0 0 238 0 238 -35 17 c-48 23 -187 22 -232 0z"/>
-					<path class="bodyPart pelvis" id="lowerAbdomen" d="M1102 1372 c-7 -42 -12 -119 -12 -169 l0 -92 190 0 190 0 0 92 c0 50 -5 127 -12 169 l-12 78 -166 0 -166 0 -12 -78z"/>
+					<path class="bodyPart chest" data-id="chest" d="M1163 1963 l-33 -17 0 -238 0 -238 150 0 150 0 0 238 0 238 -35 17 c-48 23 -187 22 -232 0z"/>
+					<path class="bodyPart pelvis" data-id="lowerAbdomen" d="M1102 1372 c-7 -42 -12 -119 -12 -169 l0 -92 190 0 190 0 0 92 c0 50 -5 127 -12 169 l-12 78 -166 0 -166 0 -12 -78z"/>
 				</g>
 				<g class="arms">
 					<g class="rightArm">
-						<path class="bodyPart upperArm upperRightArm" id="upperArms" d="M1062 1914 c-17 -14 -37 -34 -42 -44 -6 -10 -15 -76 -21 -145 -6 -70 -17 -145 -24 -166 l-14 -39 58 0 58 0 12 68 c7 39 11 125 9 209 l-3 142 -33 -25z"/>
-						<path class="bodyPart lowerArm lowerRightArm" id="lowerArms" d="M950 1408 c-19 -113 -45 -185 -84 -232 -41 -50 -43 -56 -18 -56 13 0 17 -8 17 -37 0 -32 4 -39 28 -47 43 -16 64 13 75 104 6 47 27 120 56 193 25 66 46 125 46 133 0 10 -14 14 -54 14 l-54 0 -12 -72z"/>
+						<path class="bodyPart upperArm upperRightArm" data-id="upperArms" id="upperArms" d="M1062 1914 c-17 -14 -37 -34 -42 -44 -6 -10 -15 -76 -21 -145 -6 -70 -17 -145 -24 -166 l-14 -39 58 0 58 0 12 68 c7 39 11 125 9 209 l-3 142 -33 -25z"/>
+						<path class="bodyPart lowerArm lowerRightArm" data-id="lowerArms" d="M950 1408 c-19 -113 -45 -185 -84 -232 -41 -50 -43 -56 -18 -56 13 0 17 -8 17 -37 0 -32 4 -39 28 -47 43 -16 64 13 75 104 6 47 27 120 56 193 25 66 46 125 46 133 0 10 -14 14 -54 14 l-54 0 -12 -72z"/>
 					</g>
 					<g class="leftArm">
-						<path class="bodyPart upperArm upperLeftArm" d="M1460 1789 c0 -84 5 -179 12 -211 l12 -58 58 0 57 0 -14 39 c-7 21 -18 96 -24 167 -12 136 -20 158 -71 194 l-30 21 0 -152z"/>
-						<path class="bodyPart lowerArm lowerLeftArm"  d="M1490 1466 c0 -8 21 -67 46 -133 29 -73 50 -146 56 -193 11 -91 32 -120 75 -104 24 8 28 15 28 47 0 29 4 37 18 37 24 0 22 6 -19 56 -39 47 -65 119 -84 232 l-12 72 -54 0 c-40 0 -54 -4 -54 -14z"/>
+						<path class="bodyPart upperArm upperLeftArm" data-id="upperArms" d="M1460 1789 c0 -84 5 -179 12 -211 l12 -58 58 0 57 0 -14 39 c-7 21 -18 96 -24 167 -12 136 -20 158 -71 194 l-30 21 0 -152z"/>
+						<path class="bodyPart lowerArm lowerLeftArm" data-id="lowerArms" d="M1490 1466 c0 -8 21 -67 46 -133 29 -73 50 -146 56 -193 11 -91 32 -120 75 -104 24 8 28 15 28 47 0 29 4 37 18 37 24 0 22 6 -19 56 -39 47 -65 119 -84 232 l-12 72 -54 0 c-40 0 -54 -4 -54 -14z"/>
 					</g>
 				</g>
 				<g class="legs">
-					<path class="bodyPart bodyPart leg rightLeg" id="legsAndFeet" d="M1096 1068 c5 -13 7 -156 6 -318 l-2 -295 -32 -67 c-37 -78 -33 -116 15 -132 47 -17 56 7 82 209 14 107 31 211 60 365 8 41 19 107 25 145 5 39 13 80 16 93 6 22 5 22 -86 22 -90 0 -91 0 -84 -22z"/>
-					<path class="bodyPart bodyPart leg leftLeg" d="M1294 1068 c3 -13 11 -54 16 -93 6 -38 17 -104 25 -145 29 -154 46 -258 60 -365 26 -202 35 -226 82 -209 48 16 52 54 15 132 l-32 67 -2 295 c-1 162 1 305 6 318 7 22 6 22 -84 22 -91 0 -92 0 -86 -22z"/>
+					<path class="bodyPart bodyPart leg rightLeg" data-id="legsAndFeet" d="M1096 1068 c5 -13 7 -156 6 -318 l-2 -295 -32 -67 c-37 -78 -33 -116 15 -132 47 -17 56 7 82 209 14 107 31 211 60 365 8 41 19 107 25 145 5 39 13 80 16 93 6 22 5 22 -86 22 -90 0 -91 0 -84 -22z"/>
+					<path class="bodyPart bodyPart leg leftLeg" data-id="legsAndFeet" d="M1294 1068 c3 -13 11 -54 16 -93 6 -38 17 -104 25 -145 29 -154 46 -258 60 -365 26 -202 35 -226 82 -209 48 16 52 54 15 132 l-32 67 -2 295 c-1 162 1 305 6 318 7 22 6 22 -84 22 -91 0 -92 0 -86 -22z"/>
 				</g>
 			</g>
 		</svg>
 	</section>
 
-	<section class="info clearfix"> <!-- Javascript puts remedy info here -->
-
+	<section class="info clearfix">
+		<!-- Buttons with options go here -->
 	</section>
+	<section class="yogaInfo">
+		<!-- Yoga pose info goes here.  -->
+	</section>
+</div>
 
 <!-- 	<footer>
 		<p>Generated by: Lorem ipsum dolor sit amet.</p>

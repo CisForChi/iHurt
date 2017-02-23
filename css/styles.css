@@ -163,6 +163,18 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   box-sizing: border-box;
 }
 
+body {
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 60px;
+  font-family: Montserrat;
+}
+
 header {
   position: relative;
   height: 300px;
@@ -184,12 +196,6 @@ header svg {
   height: 50px;
 }
 
-button {
-  display: block;
-  color: black;
-  border: 1px solid black;
-}
-
 .bodyPart {
   transition: fill 0.3s;
 }
@@ -200,8 +206,7 @@ button {
 }
 
 .diagram {
-  float: left;
-  width: 50%;
+  width: 100%;
 }
 
 .diagram svg {
@@ -237,22 +242,33 @@ button {
           transform-origin: center;
 }
 
+.appArea {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .info {
-  float: left;
-  width: 50%;
+  position: absolute;
+  font-family: 'Open Sans', sans-serif;
+  left: 100%;
+  top: 0;
+  border: 1px solid black;
+  transition: left 1s;
 }
 
-footer {
-  clear: both;
+.info ul {
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
-button {
-  display: block;
-  margin-bottom: 2px;
-  padding: 25px;
-  background: transparent;
+.info li {
+  list-style: none;
+  background-color: transparent;
+  border: 1px solid transparent;
 }
 
-button:hover {
-  color: red;
+.info.active {
+  left: 75%;
 }

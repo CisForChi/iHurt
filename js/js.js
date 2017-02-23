@@ -1,4 +1,18 @@
 // $(function() {
+$('.bodyPart').on("click", function(){
+
+
+$('.info').toggleClass("active");
+$(this).css("fill", "rgba(213, 0, 18, .3)");
+
+
+
+
+
+});
+
+
+
 $('.bodyPart').on("click", function() {
 	var partId = ($(this).data('id'));
 	getBodyButtons(partId);
@@ -9,11 +23,36 @@ function getBodyButtons(partId) { //function gets buttons for the body part that
 
 	var currentPart = partId;
 	var bodyOptions = Object.keys(dummyBody[currentPart]);
-	$('.info').html('<ul class="buttonList"></ul>')
+	$('.info').html('<ul class="buttonList"></ul>');
+	$('.yogaInfo').html('');
 	for (var i = 0; i < bodyOptions.length; i++) {
-		$('.buttonList').append('<li><button>' + bodyOptions[i] + '</button></li>');
+		$('.buttonList').append('<li><button class="benefitButton" data-id=' + currentPart + '>' + bodyOptions[i] + '</button></li>');
 	}
 };
+
+
+$('.info').on('click', '.benefitButton', function(){
+var currentPart = $(this).data('id');
+var benefit = $(this).text();
+var poses = dummyBody[currentPart][benefit];
+
+	$('.yogaInfo').html('<ul class="posesList"></ul>')
+for (var i = 0; i < poses.length; i++) {
+
+	$('.posesList').append('<li><button class="poseButton" >' + poses[i].title + '</button></li>');
+}
+
+
+
+
+
+
+});
+// $('ul').on('click', 'li', function(){
+// 	var checkbox = $(this).find('.glyphicon');
+//
+// checkbox.toggleClass('glyphicon-unchecked glyphicon-check');
+// $(this).toggleClass('text-muted');
 
 var dummyBody = {};
 
@@ -30,7 +69,7 @@ function sortIntoCategories() {
 			depression: categories.depression,
 			anger: categories.anger,
 			anxiety: categories.anxiety,
-			attention: categories.attention,
+			concentration: categories.concentration,
 			exhaustion: categories.exhaustion,
 			insomnia: categories.insomnia,
 			headache: categories.headache,
