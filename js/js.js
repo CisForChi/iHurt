@@ -1,4 +1,19 @@
 // $(function() {
+$('.bodyPart').on("click", function() {
+	  var partId = ($(this).attr('id'));
+		getBodyButtons(partId);
+});
+
+
+function getBodyButtons(partId){ //function gets buttons for the body part that was clicked
+
+	 var currentPart = partId;
+	var bodyOptions = Object.keys(dummyBody[currentPart]);
+	for (var i = 0; i < bodyOptions.length; i++) {
+	$('.info').append('<button>' + bodyOptions[i] + '</button>');
+	}
+	};
+
 
 function sortIntoCategories() {
 	for (pose in poseIndex) {
@@ -8,6 +23,7 @@ function sortIntoCategories() {
 		}
 	}
 }
+
 sortIntoCategories();
 
 var categories = {
