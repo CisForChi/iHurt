@@ -1,14 +1,35 @@
 @import "partials/normalize";
+@import "partials/socialmedia";
+$mediaWidth1: 834px;
 body {
-	overflow-x: hidden;
-	height: 100vh;
+	overflow: hidden;
+
+	max-height: 100vh;
 	text-transform:capitalize;
+
+	a {
+		text-decoration:none;
+		color:#c2e1e5;
+		border:1px solid black;
+		padding:5px;
+
+		a:hover {
+			color:black;
+			background:#c2e1e5;
+			padding:5px;
+			border:1px solid black;
+		}
+	}
 }
 header {
 	position: relative;
 	height: 30vh;
 	top: 0;
+		font-family: 'Lato', sans-serif;
 	transition: top 5s;
+	@media all and (max-width: $mediaWidth1){
+		height: 20vh;
+	}
 }
 .headerHurt {
 	position: absolute;
@@ -17,6 +38,7 @@ header {
 	bottom: 0%;
 	transition: bottom 4s;
 	background: #c2e1e5;
+	top: 0;
 }
 .headerHeal {
 	background: none;
@@ -29,8 +51,10 @@ header h1 {
 	text-align: center;
 	margin: 0 auto;
 	font-size: 71px;
-
 	color: rgba(0, 0, 0, .4);
+	@media all and (max-width: $mediaWidth1){
+		padding: 5px;
+	}
 }
 header svg {
 	position: absolute;
@@ -47,7 +71,9 @@ h2 {
 }
 
 .closeButton{
-	float:right;
+	position: fixed;
+	right: 5%;
+	top: 5%;
 	padding:8px;
 	margin:0 auto;
 	font-size:24px;
@@ -55,6 +81,10 @@ h2 {
 	color: #c2e1e5;
 	width:50px;
 	border:3px solid rgba(0, 0, 0, .4);
+}
+.tweetMe {
+	@extend .closeButton;
+	top: 15%;
 }
 //end of header stuff
 //SVG diagram guy stuff here
@@ -71,14 +101,31 @@ h2 {
 	transition: width 2s;
 	&.diagram--Active {
 		width: 50%;
+	@media all and (max-width: $mediaWidth1){
+		width: 100%;
+		svg {
+			// width: 50%;
+			left: 50%;
+			transform: translatex(-50%) rotate(180deg);
+			top: -30px;
+			height: 500px;
+			width: 350px;
+		}
+	}
 	}
 	svg {
+		left: 0;
 		position: relative;
+		top: 0;
 		width: 100%;
 		height: 100%;
 		transform-origin: center;
 		transform: rotate(180deg);
-		transition: height 5s;
+		transition: height 5s, width 5s, top 9s;
+		@media all and (max-width: $mediaWidth1){
+			transition: height 5s, top 9s;
+			
+		}
 	}
 }
 .diagram svg g {
@@ -132,6 +179,9 @@ h2 {
 	height: 70vh;
 	margin: 0;
 	padding: 0;
+	@media all and (max-width: $mediaWidth1){
+		height: 80vh;
+	}
 }
 .info {
 	position: absolute;
@@ -139,25 +189,63 @@ h2 {
 	left: 70%;
 	transform: translatex(-50%);
 	top: 5%;
-	transition: left 2s;
+	transition: left 2s, opacity 1s;
+	max-height: 70vh;
+	overflow-y: scroll;
+	padding: 25px 0;
+	opacity: 0;
+	&::-webkit-scrollbar{
+		display: none;
+	}
 	&.info--Active {
 		left: 50%;
+		opacity: 100;
 	}
 	ul {
 		background-color: transparent;
 		// border:1px solid transparent;
 		padding: 0;
 		margin: 0 auto;
+		@media all and (max-width: $mediaWidth1){
+			display: flex;
+		}
 	}
 	li {
 		list-style: none;
 		background-color: transparent;
 		border: 1px solid transparent;
 	}
+	@media all and (max-width: $mediaWidth1){
+		overflow-x: scroll;
+		max-width: 100%;
+		top: -5%;
+	}
 }
 .yogaInfo {
 	@extend .info;
-	left: 70%;
+	left: 100%;
+	opacity: 0;
+
+	&.yoga--Active {
+		left: 70%;
+		opacity: 1;
+	}
+	li {
+		width: 200px;
+
+	}
+	@media all and (max-width: $mediaWidth1){
+		left: 50%;
+		top: auto;
+		bottom: 5%;
+		&.yoga--Active {
+			left: 50%;
+			opacity: 1;
+		}
+		ul {
+			width: 200%;
+		}
+	}
 }
 .poseOverlay {
 	background: rgba(0,0,0,0.3);
@@ -175,11 +263,11 @@ h2 {
 		position: relative;
 		top: 50%;
 		transform: translateY(-50%);
-
+		overflow-y: scroll;
 	}
 }
 button {
-	background-color: transparent;
+	background-color:rgba(0, 0, 0, .1);
 	border: 1px solid black;
 	padding: 5px 10px;
 	margin: 10px 0;
@@ -191,19 +279,34 @@ button:hover {
 button:focus {
 	outline-color: #c2e1e5;
 }
-.info.infoActive {
-	left: 75%;
-}
 
 .benefitList {
 	list-style:none;
-	text-transform:capitalize;
+
 	font-weight:400;
 	float:left;
-	max-width: 33.3333333%;
+	width:42%;
+
 }
 .instructions {
 	float: left;
-	max-width: 33.33333%;
+	width:48%;
+list-style:none;
+}
 
+.neededItemsList{
+	list-style:none;
+	// float: left;
+	width: 50%;
+	margin: 0 auto;
+
+}
+.sources {
+	clear: both;
+	text-align: center;
+}
+
+.subTitle {
+	display: flex;
+	justify-content: space-between;
 }

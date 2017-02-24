@@ -1,5 +1,5 @@
 // $(function() {
-$('.info').hide();
+// $('.info').hide();
 $('.poseOverlay').hide();
 // $('headerHeal').hide();
 
@@ -9,33 +9,38 @@ $('.poseOverlay').hide();
 // 	// $('headerHeal').fadeIn(600);
 // });
 $('.bodyPart').on("click", function() {
-	var fadeSpeed = 1000;
+	$('.yogaInfo').removeClass('yoga--Active');
+	var fadeSpeed = 100;
 	var partId = ($(this).data('id'));
 	if ($(this).hasClass('bodyPart--Active')) {
 		$('.bodyPart').removeClass('bodyPart--Active');
 		$('.diagram').removeClass('diagram--Active');
-		$('.info').fadeOut(fadeSpeed);
+		// $('.info').fadeOut(fadeSpeed);
 		$('.info').removeClass('info--Active');
+		$('.info').html('')
 
 	} else {
 		$('.bodyPart').removeClass('bodyPart--Active'); // removes color of all bodypart
 		$(this).addClass('bodyPart--Active'); // adds color to bodypart we've clicked
 		$('.diagram').addClass('diagram--Active'); // shrinks person and moved left
-		$('.info').removeClass('info--Active'); // moves the button left 70%
-		$('.info').fadeOut(fadeSpeed, function() {
-			setTimeout(function(){ $('.info').addClass('info--Active'); }, 1);
-			$('.info').fadeIn(fadeSpeed);
-
+		if ($('.info').hasClass('info--Active')) {
+			$('.info').removeClass('info--Active').on('transitionend', function() {
+				$('.info').addClass('info--Active');
+				$('.info').off('transitionend');
+				getBodyButtons(partId);
+			});
+		} else {
+			$('.info').addClass('info--Active')
 			getBodyButtons(partId);
-		});
-	}
+
+		}
+
+
+
+	};
+
 });
 
-
-
-$('.bodyPart').on("click", function() {
-
-});
 
 
 function getBodyButtons(partId) { //function gets buttons for the body part that was clicked
@@ -49,24 +54,52 @@ function getBodyButtons(partId) { //function gets buttons for the body part that
 	}
 };
 
+$('.tweetMe').on('click', function(){
+		var poseName = $('.poseTitle').text();
+	var customMessage = "Check it out! I found the " + poseName + " using this app!";
+
+	window.open("http://twitter.com/intent/tweet?text=" + customMessage, "twitterwindow", "height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0");
+});
+
 
 $('.info').on('click', '.benefitButton', function() {
 	var currentPart = $(this).data('id');
 	var benefit = $(this).text();
 	var poses = dummyBody[currentPart][benefit];
+	if ($('.yogaInfo').hasClass('yoga--Active')) {
+		$('.yogaInfo').removeClass('yoga--Active').on('transitionend', function() {
+			$('.yogaInfo').addClass('yoga--Active');
+			$('.yogaInfo').off('transitionend');
+			$('.yogaInfo').html('<ul class="posesList"></ul>')
+			for (var i = 0; i < poses.length; i++) {
+				$('.posesList').append('<li><button data-benefit="' + benefit + '" data-bodyPart="' + currentPart + '" data-poseIndexNumber="' + i + '" class="poseButton" >' + poses[i].title + '</button></li>');
+			}
+		});
+	} else {
+		$('.yogaInfo').addClass('yoga--Active');
 
-	$('.yogaInfo').html('<ul class="posesList"></ul>')
-	for (var i = 0; i < poses.length; i++) {
-		$('.posesList').append('<li><button data-benefit="' + benefit  + '" data-bodyPart="' + currentPart + '" data-poseIndexNumber="' + i + '" class="poseButton" >' + poses[i].title + '</button></li>');
+		$('.yogaInfo').html('<ul class="posesList"></ul>')
+		for (var i = 0; i < poses.length; i++) {
+			$('.posesList').append('<li><button data-benefit="' + benefit + '" data-bodyPart="' + currentPart + '" data-poseIndexNumber="' + i + '" class="poseButton" >' + poses[i].title + '</button></li>');
+		}
 	}
 });
 $('.yogaInfo').on('click', '.poseButton', function(event) {
 	event.preventDefault();
 	var data = $(this).data();
 	var arrayLocation = dummyBody[data['bodypart']][data['benefit']][data['poseindexnumber']];
-	$('.poseBox').html('<button class="closeButton">X</button>');
-	$('.poseOverlay').fadeIn(600,function(){
-		$('.poseBox').append($('<h2>' + arrayLocation.title + '</h2>').hide().fadeIn(1000));
+	$('.poseBox').html('');
+	$('.poseOverlay').fadeIn(600, function() {
+		$('.poseBox').append($('<h2 class="poseTitle">' + arrayLocation.title + '</h2>').hide().fadeIn(1000));
+		$('.poseBox').append($('<div class="subTitle clearfix"></div>').hide().fadeIn(2000));
+
+		$('.subTitle').append($('<ul class="neededItemsList"></ul>').hide().fadeIn(2000));
+		$('.neededItemsList').append($('<li><h3>What do I need?</h3></li>'));
+
+		for (var i = 0; i < arrayLocation.neededItems.length; i++) {
+			$('.neededItemsList').append($('<li><p>' + arrayLocation.neededItems[i] + '</p></li>').hide().fadeIn(1000));
+		}
+
 		$('.poseBox').append($('<ul class="benefitList"></ul>').hide().fadeIn(2000));
 		$('.benefitList').append($('<li><h3>Benefits:</h3></li>'));
 		for (var i = 0; i < arrayLocation.benefits.length; i++) {
@@ -75,9 +108,12 @@ $('.yogaInfo').on('click', '.poseButton', function(event) {
 		$('.poseBox').append($('<ul class="instructions"></ul>').hide().fadeIn(2000));
 		$('.instructions').append($('<li><h3>How To:</h3></li>'));
 
-		for (var i = 0; i < arrayLocation.benefits.length; i++) {
+		for (var i = 0; i < arrayLocation.howToSteps.length; i++) {
 			$('.instructions').append($('<li><p>' + arrayLocation.howToSteps[i] + '</p></li>').hide().fadeIn(3000));
 		}
+		$('.poseBox').append($('<div class="sources"></div>').hide().fadeIn(2000));
+		$('.sources').append($('<h3>source:</h3>'));
+		$('.sources').append('<p>Click <a href="' + arrayLocation.sources + '">here</a> to read more about ' + arrayLocation.title + '</p>')
 
 
 	});
@@ -87,6 +123,7 @@ $('.yogaInfo').on('click', '.poseButton', function(event) {
 $('.poseOverlay').on('click', '.closeButton', function(event) {
 	event.preventDefault();
 	$('.poseOverlay').fadeOut(600);
+	$('h1').text("iHeal");
 });
 // $('ul').on('click', 'li', function(){
 // 	var checkbox = $(this).find('.glyphicon');
@@ -120,6 +157,7 @@ function sortIntoCategories() {
 			tension: categories.tension,
 		},
 		lowerArms: {
+			carpaltunnel: categories.carpaltunnel,
 
 		},
 		chest: {
@@ -188,7 +226,7 @@ var poseIndex = {
 			benefits: ["stress", "mindfulness", "bloodflow", "depression", "fear", "anxiety", "anger", "exhaustion", "concentration"],
 			neededItems: ["You just need yourself."],
 			howToSteps: ['Start with standing up straight, with arms at sides.', 'Put weight evenly across feet.', 'Press big toes together, also separate heels (optional).', 'Lift toes, spread apart, release back on to ground.', 'Take a few calming inhales and exhales.', 'Close eyes.', 'Focus on one spot.', 'Try for 5 then 10 then 15 mins.'],
-			sources: ''
+			sources: 'http://www.yogajournal.com/'
 		},
 
 		karani: { //cramps, bloodflow, stress, digestion,
@@ -196,7 +234,7 @@ var poseIndex = {
 			benefits: ["stress", "mindfulness", "bloodflow", "menstruation", "digestion", "feet", "eyes", "backPain", "headache", "anxiety", "depression", "tension"],
 			neededItems: ['flat surface', 'wall', 'something comfy to lay on', 'a towel or two'],
 			howToSteps: ['Lie on the floor near a wall.', 'If you feel comfortable, regulate your breathing. The time it takes to inhale should match your exhale.', 'While exhaling swing legs up onto the wall so that your heels and sitting bones are supported.', 'Immediately stop if you feel discomfort in lower back, adjust yourself so that your sitting bones are supported and you are sitting comfortably.', 'Ensure your knees are bent, not locked.', 'Your spine should be straight, with your head resting on the floor.', ' If your neck feels strained, place a small, rolled-up towel under it for support.', 'Once you are positioned and comfortable, place a towel over your eyes and keep them closed for 5 to 15 minutes. Allow yourself to soften and release.', 'While you relax, place your arms out to your sides. Open your shoulder blades away from the spine, relaxing your hands and wrists. Keep your legs held vertically in place, but only partially flexed.', 'After 5 to 15 minutes in this pose, it is time to bring your legs down. Be sure to lie on your side for a few breaths before sitting upright with your back against the wall, then slowly rising to your feet.'],
-			sources: 'put some stuff here.'
+			sources: 'http://www.yogajournal.com/'
 		},
 
 		balasana: {
@@ -204,7 +242,7 @@ var poseIndex = {
 			benefits: ["stress", "exhaustion", "depression", "spine", "mindfulness", "tension"],
 			neededItems: ['A clean space', 'a mat', 'or a towel'],
 			howToSteps: ['sit on heels', 'bring knees together', 'keep your hips on your heels as you bend forward', 'touch floor with forehead', 'rest arms alongside body, with palms facing up'],
-			sources: 'tbd'
+			sources: 'http://www.yogajournal.com/'
 		},
 
 		uttanasana: {
@@ -212,7 +250,7 @@ var poseIndex = {
 			benefits: ["legs", "stress", "anxiety", "spine", "headache", "insomnia", "backPain", "tension"],
 			neededItems: ['You just need yourself.'],
 			howToSteps: ['Stand with your feet spread to about the width of your hips.', 'Bend knees slightly', 'Fold your upper body down over your legs, getting your belly as close to your thighs as you can comfortably. Bend your knees as much or as little as you need to', 'Fully relax your head and neck.', "NOTE: To target your lower back reach for the floor, to target upper back, simply clasp elbows."],
-			sources: 'TO DO'
+			sources: 'http://www.yogajournal.com/'
 		},
 
 		savasana: {
@@ -220,11 +258,12 @@ var poseIndex = {
 			benefits: ["stress", "insomnia", "concentration", "muscularPain", "bloodflow", "anxiety", "digestion"],
 			neededItems: ['a clean floor', 'a mat or towel'],
 			howToSteps: ['Lie flat on your back as if you were lying in bed', 'legs should be seperated, arms at your side, palms facing up', 'relax', 'on each inhale and exhale concentrate on relaxing each part of your body', 'let your tension and stress melt away upon each exhale', 'no time limit, anywhere between 3 minutes to an hour', 'after a while, relax your breathe and focus on nothingness'],
-			sources: 'to do'
+			sources: 'http://www.yogajournal.com/'
 		},
 	}
 	//Put everything on tree based on whats in the benefits array.
 
 sortIntoCategories();
+
 
 // })
