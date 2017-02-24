@@ -77,14 +77,22 @@ h2 {
 	padding:8px;
 	margin:0 auto;
 	font-size:24px;
-
 	color: #c2e1e5;
 	width:50px;
 	border:3px solid rgba(0, 0, 0, .4);
+	@media all and (max-width: $mediaWidth1){
+		top: 5px;
+		right: 70px;
+	}
 }
 .tweetMe {
 	@extend .closeButton;
 	top: 15%;
+	@media all and (max-width: $mediaWidth1){
+		top: 5px;
+		left: auto;
+		right: 10px;
+	}
 }
 //end of header stuff
 //SVG diagram guy stuff here
@@ -123,8 +131,7 @@ h2 {
 		transform: rotate(180deg);
 		transition: height 5s, width 5s, top 9s;
 		@media all and (max-width: $mediaWidth1){
-			transition: height 5s, top 9s;
-			
+			transition: height 5s, top 9s;	
 		}
 	}
 }
@@ -264,6 +271,10 @@ h2 {
 		top: 50%;
 		transform: translateY(-50%);
 		overflow-y: scroll;
+		@media all and (max-width: $mediaWidth1){
+			width: 95%;	
+			top: 55%;
+		}
 	}
 }
 button {

@@ -253,8 +253,23 @@ h2 {
   border: 3px solid rgba(0, 0, 0, 0.4);
 }
 
+@media all and (max-width: 834px) {
+  .closeButton, .tweetMe {
+    top: 5px;
+    right: 70px;
+  }
+}
+
 .tweetMe {
   top: 15%;
+}
+
+@media all and (max-width: 834px) {
+  .tweetMe {
+    top: 5px;
+    left: auto;
+    right: 10px;
+  }
 }
 
 .bodyPart {
@@ -455,6 +470,13 @@ h2 {
       -ms-transform: translateY(-50%);
           transform: translateY(-50%);
   overflow-y: scroll;
+}
+
+@media all and (max-width: 834px) {
+  .poseOverlay .poseBox {
+    width: 95%;
+    top: 55%;
+  }
 }
 
 button {
