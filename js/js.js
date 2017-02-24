@@ -1,5 +1,13 @@
 // $(function() {
 $('.info').hide();
+$('.poseOverlay').hide();
+// $('headerHeal').hide();
+
+// $('body').on('click', function(event) {
+// 	event.preventDefault();
+// 	$('.headerHurt').);
+// 	// $('headerHeal').fadeIn(600);
+// });
 $('.bodyPart').on("click", function() {
 	var fadeSpeed = 1000;
 	var partId = ($(this).data('id'));
@@ -15,7 +23,7 @@ $('.bodyPart').on("click", function() {
 		$('.diagram').addClass('diagram--Active'); // shrinks person and moved left
 		$('.info').removeClass('info--Active'); // moves the button left 70%
 		$('.info').fadeOut(fadeSpeed, function() {
-			setTimeout(function(){ $('.info').addClass('info--Active'); }, 1); 
+			setTimeout(function(){ $('.info').addClass('info--Active'); }, 1);
 			$('.info').fadeIn(fadeSpeed);
 
 			getBodyButtons(partId);
@@ -49,12 +57,36 @@ $('.info').on('click', '.benefitButton', function() {
 
 	$('.yogaInfo').html('<ul class="posesList"></ul>')
 	for (var i = 0; i < poses.length; i++) {
-
-		$('.posesList').append('<li><button class="poseButton" >' + poses[i].title + '</button></li>');
+		$('.posesList').append('<li><button data-benefit="' + benefit  + '" data-bodyPart="' + currentPart + '" data-poseIndexNumber="' + i + '" class="poseButton" >' + poses[i].title + '</button></li>');
 	}
+});
+$('.yogaInfo').on('click', '.poseButton', function(event) {
+	event.preventDefault();
+	var data = $(this).data();
+	var arrayLocation = dummyBody[data['bodypart']][data['benefit']][data['poseindexnumber']];
+	$('.poseBox').html('<button class="closeButton">X</button>');
+	$('.poseOverlay').fadeIn(600,function(){
+		$('.poseBox').append($('<h2>' + arrayLocation.title + '</h2>').hide().fadeIn(1000));
+		$('.poseBox').append($('<ul class="benefitList"></ul>').hide().fadeIn(2000));
+		$('.benefitList').append($('<li><h3>Benefits:</h3></li>'));
+		for (var i = 0; i < arrayLocation.benefits.length; i++) {
+			$('.benefitList').append($('<li><p>' + benefits[arrayLocation.benefits[i]] + '</p></li>').hide().fadeIn(3000));
+		}
+		$('.poseBox').append($('<ul class="instructions"></ul>').hide().fadeIn(2000));
+		$('.instructions').append($('<li><h3>How To:</h3></li>'));
+
+		for (var i = 0; i < arrayLocation.benefits.length; i++) {
+			$('.instructions').append($('<li><p>' + arrayLocation.howToSteps[i] + '</p></li>').hide().fadeIn(3000));
+		}
 
 
+	});
 
+
+});
+$('.poseOverlay').on('click', '.closeButton', function(event) {
+	event.preventDefault();
+	$('.poseOverlay').fadeOut(600);
 });
 // $('ul').on('click', 'li', function(){
 // 	var checkbox = $(this).find('.glyphicon');
