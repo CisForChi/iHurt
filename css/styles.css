@@ -241,6 +241,14 @@ header svg {
   -webkit-justify-content: center;
   -ms-flex-pack: center;
   justify-content: center; }
+  @media all and (max-width: 1020px) {
+    .mainContent {
+      -webkit-flex-direction: column;
+      -ms-flex-direction: column;
+      flex-direction: column;
+      -webkit-align-items: center;
+      -ms-flex-align: center;
+      align-items: center; } }
 
 .instructions {
   list-style: none;
@@ -257,6 +265,12 @@ header svg {
     width: 300px; }
   .instructions li {
     width: 300px; }
+  @media all and (max-width: 1020px) {
+    .instructions {
+      height: 0;
+      padding: 0;
+      text-align: center;
+      margin-top: 40px; } }
 
 .benefitList {
   list-style: none;
@@ -273,6 +287,10 @@ header svg {
     width: 300px; }
   .benefitList li {
     width: 300px; }
+  @media all and (max-width: 1020px) {
+    .benefitList {
+      text-align: center;
+      margin-top: 40px; } }
 
 .neededItemsList {
   list-style: none;

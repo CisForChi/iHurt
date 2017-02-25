@@ -58,6 +58,10 @@
 	margin: 0 auto;
 	display: flex;
 	justify-content: center;
+	@media all and (max-width: 1020px){
+		flex-direction: column;
+		align-items: center;
+	}
 }
 .instructions {
 	list-style:none;
@@ -76,6 +80,13 @@
 	}
 	li {
 		width: 300px;
+	}
+	@media all and (max-width: 1020px){
+		height: 0;
+		// width: 100%;
+		padding: 0;
+		text-align: center;
+		margin-top: 40px;
 	}
 }
 
@@ -96,6 +107,12 @@
 	}
 	li {
 		width: 300px;
+	}
+		@media all and (max-width: 1020px){
+		// width: 100%;
+		text-align: center;
+		margin-top: 40px;
+		
 	}
 }
 
