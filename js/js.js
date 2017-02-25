@@ -164,17 +164,19 @@ $('.yogaInfo').on('click', '.poseButton', function(event) {
 		for (var i = 0; i < arrayLocation.neededItems.length; i++) {
 			$('.neededItemsList').append($('<li><p>' + arrayLocation.neededItems[i] + '</p></li>').hide().fadeIn(1000));
 		}
-		$('.poseBox').append($('<ul class="benefitList"></ul>').hide().fadeIn(2000));
+		$('.poseBox').append($('<div class="mainContent clearfix"></div>').hide().fadeIn(2000));
+		$('.mainContent').append($('<ul class="benefitList"></ul>').hide().fadeIn(2000));
+		$('.mainContent').removeAttr('style');
 		$('.benefitList').append($('<li><h3>Benefits:</h3></li>'));
 		for (var i = 0; i < arrayLocation.benefits.length; i++) {
 			$('.benefitList').append($('<li><p>' + benefits[arrayLocation.benefits[i]] + '</p></li>').hide().fadeIn(3000));
 		}
-		$('.poseBox').append($('<ul class="instructions"></ul>').hide().fadeIn(2000));
+		$('.mainContent').append($('<ul class="instructions"></ul>').hide().fadeIn(2000));
 		$('.instructions').append($('<li><h3>How To:</h3></li>'));
 		for (var i = 0; i < arrayLocation.howToSteps.length; i++) {
 			$('.instructions').append($('<li><p>' + arrayLocation.howToSteps[i] + '</p></li>').hide().fadeIn(3000));
 		}
-		$('.poseBox').append($('<div class="sources"></div>').hide().fadeIn(2000));
+		$('.instructions').append($('<li class="sources"></li>').hide().fadeIn(2000));
 		$('.sources').append($('<h3>source:</h3>'));
 		$('.sources').append('<p>Click <a href="' + arrayLocation.sources + '">here</a> to read more about ' + arrayLocation.title + '</p>')
 	});
