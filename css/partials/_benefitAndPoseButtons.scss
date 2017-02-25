@@ -1,0 +1,78 @@
+.info {
+	position: absolute;
+	font-family: 'Open Sans', sans-serif;
+	left: 70%;
+	transform: translatex(-50%);
+	top: 5%;
+	transition: left 2s, opacity 1s;
+	max-height: 70vh;
+	overflow-y: scroll;
+	padding: 25px 0;
+	opacity: 0;
+	&::-webkit-scrollbar{
+		display: none;
+	}
+	&.info--Active {
+		left: 50%;
+		opacity: 100;
+	}
+	ul {
+		background-color: transparent;
+		// border:1px solid transparent;
+		padding: 0;
+		margin: 0 auto;
+		@media all and (max-width: $mediaWidth1){
+			display: flex;
+		}
+	}
+	li {
+		list-style: none;
+		background-color: transparent;
+		border: 1px solid transparent;
+	}
+	@media all and (max-width: $mediaWidth1){
+		overflow-x: scroll;
+		max-width: 100%;
+		top: -5%;
+	}
+}
+.yogaInfo {
+	@extend .info;
+	left: 100%;
+	opacity: 0;
+
+	&.yoga--Active {
+		left: 70%;
+		opacity: 1;
+	}
+	li {
+		width: 200px;
+
+	}
+	@media all and (max-width: $mediaWidth1){
+		left: 50%;
+		top: auto;
+		bottom: 5%;
+		&.yoga--Active {
+			left: 50%;
+			opacity: 1;
+		}
+		ul {
+			width: 200%;
+		}
+	}
+}
+
+button {
+	background-color:rgba(0, 0, 0, .1);
+	border: 1px solid black;
+	padding: 5px 10px;
+	margin: 10px 0;
+	width: 100%;
+}
+button:hover {
+	background: #c2e1e5;
+}
+button:focus {
+	outline-color: #c2e1e5;
+}
