@@ -22,7 +22,7 @@
 				height: 500px;
 				width: 350px;
 				transition: none;
-				@media all and (max-height: 613px) {
+				@media all and (max-width: 600px) {
 					width: 250px;
 					top: -85px;
 				}
@@ -40,6 +40,10 @@
 		transition: height 5s, width 5s, top 9s;
 		@media all and (max-width: $mediaWidth1) {
 			transition: height 5s, top 9s;
+		}
+		@media all and (max-width: 600px) {
+			width: 250px;
+			top: -85px;
 		}
 	}
 }

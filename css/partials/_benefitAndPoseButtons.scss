@@ -60,8 +60,8 @@
 			width: 250%;
 		}
 	}
-	@media all and (max-height: 613px) {
-		bottom: 12%;
+	@media all and (max-width: 600px) {
+		bottom: 15%;
 	}
 	button {
 		text-transform: capitalize;
