@@ -1,0 +1,21 @@
+.footer {
+  text-transform: capitalize;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  font-size: 1.2rem;
+  text-align: right;
+  a {
+    border: 1px solid transparent;
+    color: black;
+    padding: 0;
+    margin: 0;
+  }
+  p {
+    padding-right: 50px;
+    @media all and (max-width: 500px) {
+      text-align: center;
+      padding: 0;
+    }
+  }
+}

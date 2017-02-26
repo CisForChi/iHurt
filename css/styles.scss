@@ -2,17 +2,11 @@ html {
 	font-size: 62.5%;
 }
 @import "partials/variables"; //litterally just the mediaquery trigger widths
-@import "partials/normalize"; 
-@import "partials/header"; //all the css for the book shaped header, includes H1 
+@import "partials/normalize";
+@import "partials/header"; //all the css for the book shaped header, includes H1
 @import "partials/poseOverlay"; // all the css for the overlay that appears when a yoga pose is clicked.
 @import "partials/dummyBody"; // css for the dummy svg and its parent div
 @import "partials/benefitAndPoseButtons"; //css for the benefit buttons and yoga pose buttons
 @import "partials/shame.scss"; //Misc stuff: body css, h2 css, and App area css.
 
-
-
-
-
-
-
-
+@import "partials/footer.scss"; //css for footer

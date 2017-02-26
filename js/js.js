@@ -20,13 +20,14 @@ var categories = { // initializing object for use by sortIntoCategories function
 	headache: [],
 	concentration: [],
 	bloodflow: [],
-	feet: [],
+	tired: [],
 	eyes: [],
 	backPain: [],
 	stress: [],
 	mindfulness: [],
 	legs: [],
 	tension: [],
+	strain: []
 }
 
 var benefits = { //descriptions of benefits listed in poseIndex, to be printed in HTML when pose clicked.
@@ -44,29 +45,30 @@ var benefits = { //descriptions of benefits listed in poseIndex, to be printed i
 	headache: "lessons headache",
 	concentration: "Improves concentration.",
 	bloodflow: "Increases blood flow",
-	feet: "restores tired feet",
+	tired: "restores tired feet",
 	eyes: "Alleviates problems with the eyes.",
 	backPain: "Lessens back pain",
 	stress: "calms the mind and soul",
 	mindfulness: "encourages focus on breathing",
 	legs: "Stretches legs to relieve muscle pain",
-	tension: "Relieves tension"
+	tension: "Relieves tension",
+	strain:"Targets and relaxes strain from using computers"
 };
 
 var poseIndex = { //object of all poses to be displayed.
 		tadasana: {
 			title: 'mountain pose',
-			benefits: ["stress", "mindfulness", "bloodflow", "depression", "fear", "anxiety", "anger", "exhaustion", "concentration"],
+			benefits: ["stress", "mindfulness", "bloodflow", "depression", "fear", "anxiety", "anger", "exhaustion", "concentration", "strain"],
 			neededItems: ["You just need yourself."],
-			howToSteps: ['Start with standing up straight, with arms at sides.', 'Put weight evenly across feet.', 'Press big toes together, also separate heels (optional).', 'Lift toes, spread apart, release back on to ground.', 'Take a few calming inhales and exhales.', 'Close eyes.', 'Focus on one spot.', 'Try for 5 then 10 then 15 mins.'],
+			howToSteps: ['Start with standing up straight,  arms relaxed by your sides.', 'Distribute weight evenly across feet.', 'Press big toes together, separate heels (optional).', 'Lift toes, spread all toes apart, release back on to ground.', 'Take a few calming inhales and exhales.', 'Close eyes.', 'Focus on one spot, either eyes closed or somewhere in the room.', 'Try for 5,10, then 15 mins.'],
 			sources: 'http://www.yogajournal.com/'
 		},
 
 		karani: {
 			title: "Vipaita Karani (\"Legs-Up-the-Wall Pose\")",
-			benefits: ["stress", "mindfulness", "bloodflow", "menstruation", "digestion", "feet", "eyes", "backPain", "headache", "anxiety", "depression", "tension"],
+			benefits: ["stress", "mindfulness", "bloodflow", "menstruation", "digestion", "tired", "eyes", "backPain", "headache", "anxiety", "depression", "tension"],
 			neededItems: ['flat surface', 'wall', 'something comfy to lay on', 'a towel or two'],
-			howToSteps: ['Lie on the floor near a wall.', 'If you feel comfortable, regulate your breathing. The time it takes to inhale should match your exhale.', 'While exhaling swing legs up onto the wall so that your heels and sitting bones are supported.', 'Immediately stop if you feel discomfort in lower back, adjust yourself so that your sitting bones are supported and you are sitting comfortably.', 'Ensure your knees are bent, not locked.', 'Your spine should be straight, with your head resting on the floor.', ' If your neck feels strained, place a small, rolled-up towel under it for support.', 'Once you are positioned and comfortable, place a towel over your eyes and keep them closed for 5 to 15 minutes. Allow yourself to soften and release.', 'While you relax, place your arms out to your sides. Open your shoulder blades away from the spine, relaxing your hands and wrists. Keep your legs held vertically in place, but only partially flexed.', 'After 5 to 15 minutes in this pose, it is time to bring your legs down. Be sure to lie on your side for a few breaths before sitting upright with your back against the wall, then slowly rising to your feet.'],
+			howToSteps: ['Lie on the floor near a wall.', 'Begin to regulate your breathe; the time it takes to inhale should match your exhales.', 'While exhaling, swing one leg at a time  onto the wall so that your heels and sitting bones are supported.', 'Immediately stop if you feel discomfort in lower back, adjust yourself so that your sitting bones are supported and you are sitting comfortably.', 'Ensure your knees are bent, not locked.', 'Your spine should be straight, with your head resting on the floor.', 'If your neck feels strained, place a small, rolled-up towel under it for support.', 'Keep your eyes closed for 5 to 15 minutes, allow yourself to soften and release.', 'While you relax, place your arms out to your sides. Open your shoulder blades away from the spine, relaxing your hands and wrists. Keep your legs held vertically in place, but only partially flexed.', 'If your mind feels active, spread legs apart,iIf your mind is exausted, take a yoga strap or even a belt and tie your thighs together, so no effort is required to keep your legs together.', 'It is time to bring your legs down, be sure to lie on your side for a few breaths before sitting upright with your back against the wall, then slowly rise back up to your feet.'],
 			sources: 'http://www.yogajournal.com/'
 		},
 
@@ -74,7 +76,7 @@ var poseIndex = { //object of all poses to be displayed.
 			title: 'Child\'s Pose',
 			benefits: ["stress", "exhaustion", "depression", "spine", "mindfulness", "tension"],
 			neededItems: ['A clean space', 'a mat', 'or a towel'],
-			howToSteps: ['sit on heels', 'bring knees together', 'keep your hips on your heels as you bend forward', 'touch floor with forehead', 'rest arms alongside body, with palms facing up'],
+			howToSteps: ['Sit on your heels', 'bring knees together', 'keep your hips on your heels as you bend forward', 'touch floor with forehead', 'rest arms alongside body, with palms facing up.'],
 			sources: 'http://www.yogajournal.com/'
 		},
 
@@ -123,9 +125,27 @@ $('.bodyPart').on("click", function() {
 	};
 });
 
+$(".info").mousewheel(function(event, delta) { //allows the user to scroll /w mousewheel on smaller screens.
+	if(window.innerWidth < 834){
+      this.scrollLeft -= (delta * 30);
+    
+      event.preventDefault();
+	}
+   });
+$(".yogaInfo").mousewheel(function(event, delta) { //allows the user to scroll /w mousewheel on smaller screens.
+	if(window.innerWidth < 834){
+      this.scrollLeft -= (delta * 30);
+    
+      event.preventDefault();
+	}
+   });
+
+
+
 $('.tweetMe').on('click', function(){
 	var poseName = $('.poseTitle').text();
-	var customMessage = "Check it out! I found the " + poseName + " using this app!";
+	var benefitName = $('.benefits').text();
+	var customMessage = "iHurt so I practised " + poseName + " using iHeal. Check it out, pals! www.ihurt.website";
 	window.open("http://twitter.com/intent/tweet?text=" + customMessage, "twitterwindow", "height=450, width=550, toolbar=0, location=0, menubar=0, directories=0, scrollbars=0");
 });
 
@@ -182,6 +202,7 @@ $('.yogaInfo').on('click', '.poseButton', function(event) {
 	});
 });
 
+
 $('.poseOverlay').on('click', '.closeButton', function(event) {
 	event.preventDefault();
 	$('.poseOverlay').fadeOut(600);
@@ -224,7 +245,7 @@ function sortIntoCategories() {
 			tension: categories.tension,
 		},
 		lowerArms: {
-			carpaltunnel: categories.carpaltunnel,
+			strain: categories.strain,
 
 		},
 		chest: {
@@ -235,7 +256,7 @@ function sortIntoCategories() {
 			menstruation: categories.menstruation,
 		},
 		legsAndFeet: {
-			feet: categories.feet,
+			tired: categories.tired,
 		}
 	}
 };
