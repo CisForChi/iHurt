@@ -417,7 +417,11 @@ li.sources {
     @media all and (max-width: 600px) {
       .diagram svg {
         width: 250px;
-        top: -85px; } }
+        top: -85px;
+        left: 50%;
+        -webkit-transform: translateX(-50%) rotate(180deg);
+        -ms-transform: translateX(-50%) rotate(180deg);
+        transform: translateX(-50%) rotate(180deg); } }
 
 .diagram svg g {
   width: 100%; }
